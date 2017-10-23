@@ -6,7 +6,6 @@ function printQuestionMarks(num) {
     for (var i = 0; i < num; i++) {
         arr.push("?");
     }
-
     return arr.toString();
 }
 
@@ -18,13 +17,12 @@ function objToSql(ob) {
             arr.push(key + "=" + ob[key]);
         }
     }
-
     return arr.toString();
 }
 
 var orm = {
     selectAll: function(tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
+        var queryString = "SELECT * FROM " + tableInput;
         connection.query(queryString, function(err, result) {
             if (err) throw err;
             cb(result);
@@ -37,12 +35,12 @@ var orm = {
         queryString += cols.toString();
         queryString += ") ";
         queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
+        queryString += printQuestionMarks(value.length);
         queryString += ") ";
 
         console.log(queryString);
 
-        connection.query(queryString, vals, function(err, result) {
+        connection.query(queryString, value, function(err, result) {
             if (err) throw err;
             cb(result);
         });
@@ -57,16 +55,6 @@ var orm = {
 
         console.log(queryString);
 
-        connection.query(queryString, function(err, result) {
-            if (err) throw err;
-            cb(result);
-        });
-    },
-    delete: function(talbe, condition, cb) {
-        var queryString = "DELETE FROM " + table;
-
-        queryString += " WHERE ";
-        queryString += condition;
         connection.query(queryString, function(err, result) {
             if (err) throw err;
             cb(result);

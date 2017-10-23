@@ -1,0 +1,29 @@
+<h1>Eat Da Burger!</h1>
+
+  {{#each burgers}}
+    {{#unless this.devoured}}
+	    	<form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
+	          <input type="hidden" name="devoured" value="true">
+	          <p>{{this.burger_name}}</p>
+	          <button type="submit">Devour</button>
+	        </form>
+    	{{/unless}}
+  	{{/each}}
+
+ {{#each burgers}}
+    {{#if this.devoured}}
+		<form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
+	          <input type="hidden" name="devoured" value="true">
+	          <p>{{this.burger_name}}</p>
+	    	</form>
+    	{{/if}}
+  {{/each}}
+
+
+<h2>Add a burger</h2>
+	<form class="create-update-form" action="/api/burgers" method="POST">
+		<div>
+			<textarea class="form-control input-lg" type="text" name="burger_name"></textarea>
+		</div>
+ 			 <button type="submit">Add Burger</button>
+	</form>
