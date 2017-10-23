@@ -31,4 +31,14 @@ router.put("/api/burgers/:id", function(req, res) {
     });
 });
 
+router.put("/api/burgers/reorder/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+    console.log("condition", condition);
+    burger.updateOne({
+        devoured: false
+    }, condition, function(data) {
+        res.redirect("/");
+    });
+});
+
 module.exports = router;

@@ -1,34 +1,40 @@
 <div class="container">
-    <h1>Eat Da Burger!</h1>
+    <img src="assets/img/burger.png" alt="burger">
     <div class="row">
         <div class="col-md-6">
             {{#each burgers}} {{#unless this.devoured}}
-            <form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
-                <input type="hidden" name="devoured" value="true">
-                <div>
-                <span>{{this.burger_name}}</span>
-                <button type="submit">Devour</button>
-                </div>
-            </form>
+            <div class="row">
+                <form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
+                    <div>
+                        <div class="well">
+                            <span>{{this.burger_name}}</span>
+                            <button class="burgerbutton" type="submit">Devour</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             {{/unless}} {{/each}}
         </div>
         <div class="col-md-6">
             {{#each burgers}} {{#if this.devoured}}
-            <form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
-                <input type="hidden" name="devoured" value="true">
-                <p>{{this.burger_name}}</p>
+            <form action="/api/burgers/reorder/{{this.id}}?_method=PUT" method="POST">
+                <div class="well">
+                    <span>{{this.burger_name}}</span>
+                    <button class="burgerbutton" type="submit">Order Again</button>
+                </div>
             </form>
             {{/if}} {{/each}}
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <h2>Add a burger</h2>
+            <h3>Add A New Burger!</h3>
             <form class="create-update-form" action="/api/burgers" method="POST">
                 <div>
-                    <textarea class="form-control input-lg" type="text" name="burger_name"></textarea>
+                    <textarea id="inputform" class="form-control input-lg" type="text" name="burger_name"></textarea>
                 </div>
-                <button type="submit">Add Burger</button>
+                <br>
+                <button type="submit" class="submit">Add Burger</button>
             </form>
         </div>
     </div>

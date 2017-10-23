@@ -1,0 +1,29 @@
+.burgerbutton {
+    float: right;
+}
+
+img {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 50%;
+}
+
+body {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    background: #3C4F76;
+}
+
+h3 {
+	color: white;
+}
+
+.well, #inputform {
+	background: #C9DDFF;
+}
+
+.burgerbutton, .submit {
+	background: #F0F3BD;
+}
